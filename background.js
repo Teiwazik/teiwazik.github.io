@@ -1,7 +1,6 @@
-// Create and configure the canvas
 const canvas = document.createElement('canvas');
-canvas.classList.add('background-canvas'); // Add the class for styling
-canvas.style.pointerEvents = 'auto'; // Allow pointer events on the canvas
+canvas.classList.add('background-canvas');
+canvas.style.pointerEvents = 'auto';
 document.body.appendChild(canvas);
 
 const ctx = canvas.getContext('2d');
@@ -20,18 +19,15 @@ class Point {
     this.dy = dy;
     this.radius = radius;
     this.color = color;
-    this.boost = 0; // Boost factor for mouse interaction
+    this.boost = 0;
   }
 
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fillStyle = this.color;
-
-    // Optimized glow effect for points
-    ctx.shadowBlur = Math.min(15, this.radius * 5); // Dynamic blur based on radius
-    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)'; // Softer glow for better performance
-
+    ctx.shadowBlur = Math.min(15, this.radius * 5);
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
     ctx.fill();
     ctx.closePath();
   }
@@ -40,25 +36,22 @@ class Point {
     this.x += this.dx;
     this.y += this.dy;
 
-    // Apply friction to gradually slow down the point
     if (this.boost > 0) {
-      this.boost *= 0.9; // Gradually reduce the boost
-      this.dx *= 0.98; // Apply friction only when boosted
+      this.boost *= 0.9;
+      this.dx *= 0.98;
       this.dy *= 0.98;
     }
 
-    // Bounce off edges
     if (this.x < 0 || this.x > canvas.width) this.dx *= -1;
     if (this.y < 0 || this.y > canvas.height) this.dy *= -1;
 
-    // Fly away from the mouse when near
     const distance = Math.hypot(this.x - mouse.x, this.y - mouse.y);
     if (distance < 100) {
       const angle = Math.atan2(this.y - mouse.y, this.x - mouse.x);
-      const force = (100 - distance) / 100; // Stronger push when closer
-      this.boost = 1; // Activate boost
-      this.dx += Math.cos(angle) * force * 2; // Stronger initial push horizontally
-      this.dy += Math.sin(angle) * force * 2; // Stronger initial push vertically
+      const force = (100 - distance) / 100;
+      this.boost = 1;
+      this.dx += Math.cos(angle) * force * 2;
+      this.dy += Math.sin(angle) * force * 2;
     }
 
     this.draw();
@@ -73,11 +66,8 @@ function connectLines() {
         ctx.beginPath();
         ctx.moveTo(points[i].x, points[i].y);
         ctx.lineTo(points[j].x, points[j].y);
-
-        // Optimized glow effect for lines
-        ctx.shadowBlur = 8; // Reduced blur for lines
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.3)'; // Softer glow for lines
-
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
         ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 150})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
@@ -101,7 +91,6 @@ function init() {
 }
 
 function animate() {
-  // Clear the canvas with a solid black background
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -111,7 +100,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// Mouse event listeners
 canvas.addEventListener('mousemove', (event) => {
   mouse.x = event.clientX;
   mouse.y = event.clientY;
@@ -122,7 +110,6 @@ canvas.addEventListener('mouseleave', () => {
   mouse.y = null;
 });
 
-// Handle window resize
 window.addEventListener('resize', () => {
   const oldWidth = canvas.width;
   const oldHeight = canvas.height;
@@ -130,13 +117,11 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  // Adjust points to maintain their relative positions
   points.forEach((point) => {
     point.x = (point.x / oldWidth) * canvas.width;
     point.y = (point.y / oldHeight) * canvas.height;
   });
 });
 
-// Initialize and start animation
 init();
 animate();
