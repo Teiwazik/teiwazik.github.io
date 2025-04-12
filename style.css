@@ -428,3 +428,219 @@ cardparalax:hover {
 .hover-in {
   animation: hoverIn 1s ease-out;
 }
+
+/* Projects Section Styling */
+.projects {
+  margin-top: 50px; /* Add spacing from the content above */
+  text-align: center;
+  color: rgb(255, 255, 255); /* Ensure the text is visible on a dark background */
+  font-size: 1.5rem; /* Make the text larger */
+  font-weight: bold; /* Make the text stand out */
+  position: relative; /* Ensure proper stacking context */
+  z-index: 5; /* Ensure it is above the background */
+}
+
+/* Project Card Styling */
+.project-card {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  border-radius: 20px;
+  padding: 15px; /* Reduce padding to fit smaller height */
+  margin: 15px auto; /* Add spacing between cards */
+  max-width: 900px; /* Keep the maximum width */
+  height: 150px; /* Reduce the height of the card */
+
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.010);
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.25); /* Slightly increase shadow for better visibility */
+  backdrop-filter: blur(8px);
+  overflow: hidden; /* Prevent content overflow */
+  position: relative;
+}
+
+/* Project Icon Styling */
+.project-icon {
+  width: 100px; /* Reduce the width of the icon */
+  height: 100px; /* Reduce the height of the icon */
+  margin-right: 15px; /* Adjust spacing between the icon and text */
+  border-radius: 10px;
+  z-index: 1;
+  position: relative;
+}
+
+/* Project Info Styling */
+.project-info {
+  flex: 1; /* Allow the text to take up the remaining space */
+  display: flex;
+  flex-direction: column; /* Stack title, description, and button vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  gap: 10px; /* Add spacing between elements */
+  height: 100%; /* Ensure it fits within the card */
+}
+
+.project-info h3 {
+  margin: 0 0 5px 0; /* Add spacing below the title */
+  font-size: 1rem; /* Adjust font size for the title */
+  line-height: 1.2; /* Ensure consistent line height */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long titles */
+  white-space: nowrap; /* Prevent wrapping for titles */
+}
+
+.project-info p {
+  margin: 0; /* Remove extra margin */
+  font-size: 0.8rem; /* Reduce font size for better fit */
+  line-height: 1.2; /* Adjust line height for compact text */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  display: -webkit-box; /* Enable multi-line ellipsis */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical; /* Specify vertical orientation for ellipsis */
+}
+
+/* Button Styling */
+.project-info a {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  width: auto;
+  max-width: 300px;
+  min-width: 120px; /* Set a minimum width for the button */
+  height: 35px; /* Set a fixed height for the button */
+  background-color: #24b24b; /* Modrinth green color */
+  color: black; /* Black text */
+  font-weight: bold; /* Make the text bold */
+  font-size: 0.9rem; /* Adjust font size */
+  border-radius: 8px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  padding: 0 15px; /* Add padding to the left and right of the text */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
+  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5)); /* Initial glow */
+}
+
+.project-info a:hover {
+  background-color: #1e9e42; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly grow the button on hover */
+  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8)); /* Intensify glow on hover */
+}
+
+/* Styling for projects without a link */
+.no-link {
+  color: gray;
+  font-style: bold;
+  font-size: 0.9rem;
+}
+
+/* Project Stats Styling */
+.project-stats {
+  position: relative; /* Ensure proper positioning within the card */
+  display: flex;
+  flex-direction: column; /* Stack stats items vertically */
+  gap: 10px; /* Add spacing between stats items */
+  margin-top: 10px; /* Add spacing above the stats section */
+}
+
+.stats-item {
+  display: flex;
+  align-items: center; /* Align icon and count vertically */
+  justify-content: flex-end; /* Align the content to the right */
+  gap: 5px; /* Add spacing between the icon and the count */
+}
+
+.stats-icon {
+  width: 20px; /* Set a fixed width for the icon */
+  height: 20px; /* Set a fixed height for the icon */
+  cursor: pointer; /* Add a pointer cursor for interactivity */
+  filter: invert(1); /* Invert the colors */
+  transition: transform 0.2s ease, filter 0.2s ease; /* Smooth hover effect */
+}
+
+.stats-icon:hover {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  filter: invert(0.5); /* Partially invert the colors on hover */
+}
+
+.stats-count {
+  font-size: 0.9rem; /* Adjust font size for the count */
+  color: #ccc; /* Use a lighter color for the count */
+  margin-left: 5px; /* Add spacing between the icon and the count */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Profile Container Styling */
+.profile-container {
+  position: fixed; /* Fix the container to the right side of the screen */
+  top: 100px; /* Add spacing from the top */
+  right: 20px; /* Add spacing from the right */
+  width: 300px; /* Set a fixed width for the profile card */
+  z-index: 10; /* Ensure it appears above other elements */
+  
+}
+
+/* Profile Card Styling */
+#modrinth-profile-container .project-card {
+  padding: 15px; /* Add padding */
+  margin-top: 20px; /* Add spacing from the text */
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center content vertically */
+  gap: 15px; /* Add spacing between the image and text */
+}
+
+/* Profile Icon Styling */
+#modrinth-profile-container .project-icon {
+  width: 100px; /* Set a fixed width for the profile image */
+  height: 100px; /* Set a fixed height for the profile image */
+  border-radius: 10px; /* Add rounded corners to the image */
+  object-fit: cover; /* Ensure the image scales properly */
+}
+
+/* Profile Info Styling */
+#modrinth-profile-container .project-info {
+  flex: 1; /* Allow the text to take up the remaining space */
+  display: flex;
+  flex-direction: column; /* Stack the title, bio, and button vertically */
+  gap: 10px; /* Add spacing between elements */
+}
+
+#modrinth-profile-container .project-info h3 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.2rem; /* Adjust font size for the title */
+  line-height: 1.2; /* Ensure consistent line height */
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Prevent overflow */
+  text-overflow: ellipsis; /* Add ellipsis for long titles */
+}
+
+#modrinth-profile-container .project-info p {
+  margin: 0; /* Remove default margin */
+  font-size: 0.9rem; /* Adjust font size for the bio */
+  line-height: 1.4; /* Improve readability */
+  color: #ccc; /* Use a lighter color for the bio */
+}
+
+#modrinth-profile-container .dynamic-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 120px; /* Set a minimum width for the button */
+  height: 35px; /* Set a fixed height for the button */
+  background-color: #24b24b; /* Modrinth green color */
+  color: black; /* Black text */
+  font-weight: bold; /* Make the text bold */
+  font-size: 0.9rem; /* Adjust font size */
+  border-radius: 8px; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  padding: 0 15px; /* Add padding to the left and right of the text */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
+  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5)); /* Initial glow */
+}
+
+#modrinth-profile-container .dynamic-button:hover {
+  background-color: #1e9e42; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly grow the button on hover */
+  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8)); /* Intensify glow on hover */
+}

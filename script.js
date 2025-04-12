@@ -226,3 +226,38 @@ document
       orb.fill = colorPalette.randomColor();
     });
   });
+
+// Wait for the DOM to fully load
+document.addEventListener("DOMContentLoaded", async () => {
+  const projectsContainer = document.querySelector(".projects");
+
+  try {
+    // Fetch user data from Modrinth API
+    const response = await fetch("https://api.modrinth.com/v2/user/teiwazik");
+    const userData = await response.json();
+
+    // Fetch projects data
+    const projectsResponse = await fetch(`https://api.modrinth.com/v2/user/${userData.id}/projects`);
+    const projects = await projectsResponse.json();
+
+    // Dynamically create project cards
+    projects.forEach((project) => {
+      const projectCard = document.createElement("div");
+      projectCard.classList.add("project-card");
+
+      projectCard.innerHTML = `
+        <img src="${project.icon_url || 'default-icon.png'}" alt="${project.title}" class="project-icon">
+        <div class="project-info">
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+          <a href="${project.website_url || project.project_url}" target="_blank">View Project</a>
+        </div>
+      `;
+
+      projectsContainer.appendChild(projectCard);
+    });
+  } catch (error) {
+    console.error("Error fetching Modrinth projects:", error);
+    projectsContainer.innerHTML = "<p>Failed to load projects. Please try again later.</p>";
+  }
+});
