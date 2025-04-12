@@ -1,23 +1,18 @@
-// Wait for the DOM to fully load
 document.addEventListener("DOMContentLoaded", async () => {
   const profileContainer = document.querySelector("#modrinth-profile-container");
 
-  // Ensure the container exists before proceeding
   if (!profileContainer) {
     console.error("Profile container not found!");
     return;
   }
 
   try {
-    // Fetch user data from Modrinth API
     const userResponse = await fetch("https://api.modrinth.com/v2/user/teiwazik");
     const userData = await userResponse.json();
 
-    // Create the profile card
     const profileCard = document.createElement("div");
     profileCard.classList.add("project-card");
 
-    // Add profile content
     profileCard.innerHTML = `
       <img src="${userData.avatar_url || 'default-avatar.png'}" alt="${userData.username}" class="project-icon">
       <div class="project-info">
@@ -27,7 +22,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
-    // Append the profile card to the container
     profileContainer.appendChild(profileCard);
   } catch (error) {
     console.error("Error fetching Modrinth profile:", error);

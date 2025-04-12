@@ -1,11 +1,9 @@
-/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root Variables */
 :root {
   --light-color: hsl(0, 0%, 98%);
   --font-family: "Poppins", sans-serif;
@@ -26,11 +24,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Body Styling */
 body {
   font-family: var(--font-family);
   color: var(--light-color);
-  background: none; /* Remove any background to let the canvas show */
+  background: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,15 +36,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Background Canvas */
 .background-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Prevent interaction with the canvas */
-  z-index: 0; /* Ensure the canvas is below other elements */
+  pointer-events: none;
+  z-index: 0;
 }
 
 strong {
@@ -70,26 +66,19 @@ strong {
   max-width: 36rem;
 }
 
-
 .text-gradient {
-  background-image: linear-gradient(
-    45deg,
-    var(--base) 25%,
-    var(--complimentary2)
-  );
+  background-image: linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
 }
 
-
 .overlay__btns {
   width: 100%;
   max-width: 30rem;
   display: flex;
 }
-
 
 .overlay__btn:hover {
   transform: scale(1.05);
@@ -108,7 +97,6 @@ strong {
   margin-left: 0.375rem;
 }
 
-/* Not too many browser support this yet but it's good to add! */
 @media (prefers-contrast: high) {
   .orb-canvas {
     display: none;
@@ -130,8 +118,6 @@ strong {
     padding: 4rem;
     height: auto;
   }
-  
-  
 }
 
 @media only screen and (max-width: 600px) {
@@ -142,7 +128,6 @@ strong {
   .overlay__btns {
     flex-wrap: wrap;
   }
-  
 
   .overlay__btn:first-child {
     margin-bottom: 1rem;
@@ -167,7 +152,6 @@ p:not(:last-child) {
   margin-bottom: 1.5em;
 }
 
-/* Card Styling */
 .card {
   width: 300px;
   padding: 20px;
@@ -187,17 +171,14 @@ p:not(:last-child) {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   margin: 30px;
   height: 300px;
   padding: 35px;
-
-  border: 1.5px solid rgba(255, 255, 255, .25);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0.41);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
 }
-
 
 .animation {
   position: sticky;
@@ -205,32 +186,38 @@ p:not(:last-child) {
   animation-duration: 4s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
-  color: #E1D9D1;
+  color: #e1d9d1;
   max-width: 400px;
   min-height: 200px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: space-between;
-
   margin: 30px;
   height: 300px;
   padding: 35px;
-
-  border: 1.5px solid rgba(255, 255, 255, .25);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0.41);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-
   backdrop-filter: blur(15px);
 }
 
 @keyframes example {
-  0%   {rotate:0deg;}
-  25%   {rotate:90deg;}
-  50%   {rotate:180deg;}
-  75%   {rotate:270deg;}
-  100%   {rotate:360deg;}
+  0% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 90deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  75% {
+    rotate: 270deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
 
 #test {
@@ -269,14 +256,10 @@ cardparalax:hover {
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(50px);
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.25);
-
 }
 
-#canvas{
+#canvas {
   background: linear-gradient(#670000, #87009d);
-
-
-
 }
 
 .overlay__btn {
@@ -291,18 +274,17 @@ cardparalax:hover {
 }
 
 .padding {
-  margin-top: 100px
+  margin-top: 100px;
 }
 
 .sizing {
   width: 20%;
 }
 
-/* Icon Styling */
 #icons {
-  width: 30px; /* Set a consistent width */
-  height: 30px; /* Set a consistent height */
-  scale: 120%; /* Optional scaling for hover effects */
+  width: 30px;
+  height: 30px;
+  scale: 120%;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -311,34 +293,30 @@ cardparalax:hover {
 }
 
 #icons:hover {
-  scale: 150%; /* Increase size on hover */
+  scale: 150%;
 }
 
 .tint {
   transform-style: preserve-3d;
   transform: perspective(1000px);
-  }
+}
 
 .box {
-  color: #E1D9D1;
+  color: #e1d9d1;
   width: 400px;
   height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   margin: 30px;
   padding: 35px;
-
-  border: 1.5px solid rgba(255, 255, 255, .25);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0.41);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-
   backdrop-filter: blur(15px);
 }
 
-/* Navbar Styling */
 .navbar {
   width: 100%;
   height: 50px;
@@ -351,26 +329,25 @@ cardparalax:hover {
   padding: 0 20px;
   position: fixed;
   top: 0;
-  z-index: 10; /* Ensure navbar is above the background */
+  z-index: 10;
 }
 
 .navbar a.navbar-text {
-  text-decoration: none; /* Remove underline */
-  color: white; /* Ensure the text color remains white */
+  text-decoration: none;
+  color: white;
 }
 
 .navbar a.navbar-text:hover {
-  text-decoration: none; /* Prevent underline on hover */
-  color: #ccc; /* Optional: Change color on hover */
+  text-decoration: none;
+  color: #ccc;
 }
 
-/* Intro Section Styling */
 .intro {
   width: 100%;
   text-align: center;
   padding: 100px 20px 50px;
-  margin-top: 50px; /* To account for the navbar height */
-  z-index: 5; /* Ensure intro is above the background */
+  margin-top: 50px;
+  z-index: 5;
   position: relative;
 }
 
@@ -384,20 +361,18 @@ cardparalax:hover {
   margin-bottom: 0;
 }
 
-/* Content Section Styling */
 .content {
   width: 100%;
   display: flex;
-  flex-direction: row; /* Align cards in a row */
-  justify-content: center; /* Center the cards horizontally */
-  align-items: flex-start; /* Align cards to the top */
-  gap: 20px; /* Add spacing between cards */
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
   padding: 20px;
-  z-index: 5; /* Ensure content is above the background */
+  z-index: 5;
   position: relative;
 }
 
-/* Card Styling */
 .card a img {
   width: 30px;
   height: 30px;
@@ -408,7 +383,6 @@ cardparalax:hover {
   margin: 10px 0;
 }
 
-/* Hover-in Animation */
 @keyframes hoverIn {
   0% {
     transform: scale(0.9);
@@ -424,201 +398,187 @@ cardparalax:hover {
   }
 }
 
-/* Hover-in Class */
 .hover-in {
   animation: hoverIn 1s ease-out;
 }
 
-/* Projects Section Styling */
 .projects {
-  margin-top: 50px; /* Add spacing from the content above */
+  margin-top: 50px;
   text-align: center;
-  color: rgb(255, 255, 255); /* Ensure the text is visible on a dark background */
-  font-size: 1.5rem; /* Make the text larger */
-  font-weight: bold; /* Make the text stand out */
-  position: relative; /* Ensure proper stacking context */
-  z-index: 5; /* Ensure it is above the background */
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: relative;
+  z-index: 5;
 }
 
-/* Project Card Styling */
 .project-card {
   display: flex;
   align-items: center;
   text-align: left;
   border-radius: 20px;
-  padding: 15px; /* Reduce padding to fit smaller height */
-  margin: 15px auto; /* Add spacing between cards */
-  max-width: 900px; /* Keep the maximum width */
-  height: 150px; /* Reduce the height of the card */
-
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 900px;
+  height: 150px;
   color: white;
   border: 1.5px solid rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.010);
-  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.25); /* Slightly increase shadow for better visibility */
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  overflow: hidden; /* Prevent content overflow */
+  overflow: hidden;
   position: relative;
 }
 
-/* Project Icon Styling */
 .project-icon {
-  width: 100px; /* Reduce the width of the icon */
-  height: 100px; /* Reduce the height of the icon */
-  margin-right: 15px; /* Adjust spacing between the icon and text */
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
   border-radius: 10px;
   z-index: 1;
   position: relative;
 }
 
-/* Project Info Styling */
 .project-info {
-  flex: 1; /* Allow the text to take up the remaining space */
+  flex: 1;
   display: flex;
-  flex-direction: column; /* Stack title, description, and button vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  gap: 10px; /* Add spacing between elements */
-  height: 100%; /* Ensure it fits within the card */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
 }
 
 .project-info h3 {
-  margin: 0 0 5px 0; /* Add spacing below the title */
-  font-size: 1rem; /* Adjust font size for the title */
-  line-height: 1.2; /* Ensure consistent line height */
-  overflow: hidden; /* Prevent overflow */
-  text-overflow: ellipsis; /* Add ellipsis for long titles */
-  white-space: nowrap; /* Prevent wrapping for titles */
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .project-info p {
-  margin: 0; /* Remove extra margin */
-  font-size: 0.8rem; /* Reduce font size for better fit */
-  line-height: 1.2; /* Adjust line height for compact text */
-  overflow: hidden; /* Prevent overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
-  display: -webkit-box; /* Enable multi-line ellipsis */
-  -webkit-line-clamp: 2; /* Limit to 2 lines */
-  -webkit-box-orient: vertical; /* Specify vertical orientation for ellipsis */
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-/* Button Styling */
 .project-info a {
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   max-width: 300px;
-  min-width: 120px; /* Set a minimum width for the button */
-  height: 35px; /* Set a fixed height for the button */
-  background-color: #24b24b; /* Modrinth green color */
-  color: black; /* Black text */
-  font-weight: bold; /* Make the text bold */
-  font-size: 0.9rem; /* Adjust font size */
-  border-radius: 8px; /* Rounded corners */
-  text-decoration: none; /* Remove underline */
-  padding: 0 15px; /* Add padding to the left and right of the text */
-  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
-  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5)); /* Initial glow */
+  min-width: 120px;
+  height: 35px;
+  background-color: #24b24b;
+  color: black;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 0 15px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5));
 }
 
 .project-info a:hover {
-  background-color: #1e9e42; /* Darker green on hover */
-  transform: scale(1.05); /* Slightly grow the button on hover */
-  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8)); /* Intensify glow on hover */
+  background-color: #1e9e42;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8));
 }
 
-/* Styling for projects without a link */
 .no-link {
   color: gray;
   font-style: bold;
   font-size: 0.9rem;
 }
 
-/* Project Stats Styling */
 .project-stats {
-  position: relative; /* Ensure proper positioning within the card */
+  position: relative;
   display: flex;
-  flex-direction: column; /* Stack stats items vertically */
-  gap: 10px; /* Add spacing between stats items */
-  margin-top: 10px; /* Add spacing above the stats section */
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .stats-item {
   display: flex;
-  align-items: center; /* Align icon and count vertically */
-  justify-content: flex-end; /* Align the content to the right */
-  gap: 5px; /* Add spacing between the icon and the count */
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 .stats-icon {
-  width: 20px; /* Set a fixed width for the icon */
-  height: 20px; /* Set a fixed height for the icon */
-  cursor: pointer; /* Add a pointer cursor for interactivity */
-  filter: invert(1); /* Invert the colors */
-  transition: transform 0.2s ease, filter 0.2s ease; /* Smooth hover effect */
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  filter: invert(1);
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .stats-icon:hover {
-  transform: scale(1.2); /* Slightly enlarge the icon on hover */
-  filter: invert(0.5); /* Partially invert the colors on hover */
+  transform: scale(1.2);
+  filter: invert(0.5);
 }
 
 .stats-count {
-  font-size: 0.9rem; /* Adjust font size for the count */
-  color: #ccc; /* Use a lighter color for the count */
-  margin-left: 5px; /* Add spacing between the icon and the count */
-  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-left: 5px;
+  white-space: nowrap;
 }
 
-/* Profile Container Styling */
 .profile-container {
-  position: fixed; /* Fix the container to the right side of the screen */
-  top: 100px; /* Add spacing from the top */
-  right: 20px; /* Add spacing from the right */
-  width: 300px; /* Set a fixed width for the profile card */
-  z-index: 10; /* Ensure it appears above other elements */
-  
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  width: 300px;
+  z-index: 10;
 }
 
-/* Profile Card Styling */
 #modrinth-profile-container .project-card {
-  padding: 15px; /* Add padding */
-  margin-top: 20px; /* Add spacing from the text */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Center content vertically */
-  gap: 15px; /* Add spacing between the image and text */
-}
-
-/* Profile Icon Styling */
-#modrinth-profile-container .project-icon {
-  width: 100px; /* Set a fixed width for the profile image */
-  height: 100px; /* Set a fixed height for the profile image */
-  border-radius: 10px; /* Add rounded corners to the image */
-  object-fit: cover; /* Ensure the image scales properly */
-}
-
-/* Profile Info Styling */
-#modrinth-profile-container .project-info {
-  flex: 1; /* Allow the text to take up the remaining space */
+  padding: 15px;
+  margin-top: 20px;
   display: flex;
-  flex-direction: column; /* Stack the title, bio, and button vertically */
-  gap: 10px; /* Add spacing between elements */
+  align-items: center;
+  gap: 15px;
+}
+
+#modrinth-profile-container .project-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+#modrinth-profile-container .project-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #modrinth-profile-container .project-info h3 {
-  margin: 0; /* Remove default margin */
-  font-size: 1.2rem; /* Adjust font size for the title */
-  line-height: 1.2; /* Ensure consistent line height */
-  white-space: nowrap; /* Prevent wrapping */
-  overflow: hidden; /* Prevent overflow */
-  text-overflow: ellipsis; /* Add ellipsis for long titles */
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #modrinth-profile-container .project-info p {
-  margin: 0; /* Remove default margin */
-  font-size: 0.9rem; /* Adjust font size for the bio */
-  line-height: 1.4; /* Improve readability */
-  color: #ccc; /* Use a lighter color for the bio */
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #ccc;
 }
 
 #modrinth-profile-container .dynamic-button {
@@ -626,21 +586,21 @@ cardparalax:hover {
   align-items: center;
   justify-content: center;
   width: auto;
-  min-width: 120px; /* Set a minimum width for the button */
-  height: 35px; /* Set a fixed height for the button */
-  background-color: #24b24b; /* Modrinth green color */
-  color: black; /* Black text */
-  font-weight: bold; /* Make the text bold */
-  font-size: 0.9rem; /* Adjust font size */
-  border-radius: 8px; /* Rounded corners */
-  text-decoration: none; /* Remove underline */
-  padding: 0 15px; /* Add padding to the left and right of the text */
-  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
-  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5)); /* Initial glow */
+  min-width: 120px;
+  height: 35px;
+  background-color: #24b24b;
+  color: black;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 0 15px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 5px rgba(36, 178, 75, 0.5));
 }
 
 #modrinth-profile-container .dynamic-button:hover {
-  background-color: #1e9e42; /* Darker green on hover */
-  transform: scale(1.05); /* Slightly grow the button on hover */
-  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8)); /* Intensify glow on hover */
+  background-color: #1e9e42;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(36, 178, 75, 0.8));
 }
