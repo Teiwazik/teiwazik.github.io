@@ -193,7 +193,7 @@ const colorPalette = new ColorPalette();
 // Create orbs
 const orbs = [];
 
-for (let i = 1; i < 40; i++) {
+for (let i = 1; i < 100; i++) {
   const orb = new Orb(colorPalette.randomColor());
 
   app.stage.addChild(orb.graphics);
