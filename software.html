@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teiwazik Hub - Software</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .software-container {
+      margin-top: 100px;
+      width: 100%;
+      max-width: 1140px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 5;
+      position: relative;
+    }
+
+    #preview-viewport {
+      width: 100%;
+      max-width: 900px;
+      height: 400px;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 20px 20px 0 0;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      border-bottom: none;
+      backdrop-filter: blur(10px);
+    }
+
+    #art-preview { 
+      white-space: pre; 
+      font-family: 'Courier New', monospace; 
+      line-height: 1.0; 
+      color: #fff; 
+      transform-origin: center;
+    }
+
+    .i2e-controls {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 30px;
+      border-radius: 0 0 20px 20px;
+      backdrop-filter: blur(15px);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .control-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    input[type="number"], select, input[type="text"] {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input[type="range"] {
+      cursor: pointer;
+      accent-color: #24b24b;
+    }
+
+    .val-display {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    #copy-area {
+      width: 100%;
+      max-width: 900px;
+      margin-top: 30px;
+    }
+
+    .copy-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid rgba(200, 200, 255, 0.15);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      background: rgba(0, 0, 0, 0.4);
+      color: #aaa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      resize: none;
+      font-family: monospace;
+      font-size: 0.75rem;
+      margin-top: 15px;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .dynamic-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 25px;
+      background: #24b24b;
+      color: black;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none !important;
+      transition: transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dynamic-button:hover {
+      background: #1e9e42;
+      transform: scale(1.05);
+    }
+
+    .dynamic-button.download {
+      background: #eb459e;
+    }
+
+    .dynamic-button.download:hover {
+      background: #c53a84;
+    }
+
+    .dynamic-button.copy {
+      background: #43b581;
+      width: 100%;
+    }
+
+    #software-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas class="background-canvas"></canvas>
+
+  <nav class="navbar fixed-top nav-blur" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a href="index.html" class="navbar-text text-light" data-i18n="nav_hub">Hub</a>
+      <div class="navbar-links">
+        <a href="index.html#github-section" class="nav-link-item" data-i18n="nav_github">GitHub</a>
+        <a href="index.html#projects-section" class="nav-link-item" data-i18n="nav_projects">Проекты</a>
+        <a href="index.html#modrinth-section" class="nav-link-item" data-i18n="nav_modrinth">Modrinth</a>
+        <a href="software.html" class="nav-link-item active" data-i18n="nav_software">Software</a>
+      </div>
+      <div class="navbar-actions">
+        <select id="lang-switcher" class="lang-select">
+          <option value="en">EN</option>
+          <option value="ru">RU</option>
+        </select>
+        <a class="jersey-25-regular navbar-brand overlay__btn--colors text-gradient" href="#" data-i18n="nav_colors">Colors</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="software-container">
+    <div id="software-header">
+      <h1 class="jersey-25-regular" data-i18n="sw_header" style="font-size: 3.5rem;">Software Tools</h1>
+      <p data-i18n="sw_image2emoji_desc">Convert your images into raster art or Discord-ready emoji blocks.</p>
+    </div>
+
+    <!-- Image2Emoji Tool -->
+    <div id="preview-viewport">
+      <div id="art-preview" data-i18n="i2e_select_file">Select a file!</div>
+    </div>
+
+    <div class="i2e-controls">
+      <div class="control-row">
+        <input type="file" id="upload" accept="image/*" class="dynamic-button">
+      </div>
+      
+      <div class="control-row">
+        <div class="control-item">
+          <label data-i18n="i2e_width">Width</label>
+          <input type="number" id="target-width" value="65" style="width: 80px;">
+        </div>
+        <div class="control-item">
+          <label data-i18n="i2e_contrast">Contrast</label>
+          <input type="range" id="contrast" min="-100" max="100" value="0">
+          <span class="val-display" id="contrast-val">0</span>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-item">
+          <label data-i18n="i2e_mode">Mode</label>
+          <select id="char-mode">
+            <option value="0.5" data-i18n="i2e_mode_text">Text (narrow)</option>
+            <option value="1.0" data-i18n="i2e_mode_emoji">Emoji (square)</option>
+          </select>
+        </div>
+        <div class="control-item">
+          <label data-i18n="i2e_height">Height</label>
+          <span class="val-display" id="auto-height">-</span>
+        </div>
+      </div>
+
+      <div class="control-row" style="flex-direction: column; width: 100%;">
+        <label data-i18n="i2e_chars">Raster Characters</label>
+        <input type="text" id="gradient-str" value="@#S%?*+;:. " style="width: 100%; letter-spacing: 2px; font-family: monospace;">
+      </div>
+
+      <div class="control-row">
+        <button class="dynamic-button" id="gen-btn" data-i18n="i2e_generate">GENERATE</button>
+        <button id="dl-btn" class="dynamic-button download" style="display:none;" data-i18n="i2e_download">DOWNLOAD .TXT</button>
+      </div>
+    </div>
+
+    <div id="copy-area"></div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="background.js"></script>
+  <script>
+    const DISCORD_LIMIT = 1900; 
+    let originalAspect = 1;
+    let fullArtString = "";
+
+    const t = (key) => window.i18n ? window.i18n.t(key) : key;
+
+    document.getElementById('contrast').oninput = function() { 
+      document.getElementById('contrast-val').innerText = this.value; 
+    };
+
+    document.getElementById('upload').onchange = function(e) {
+      if (!e.target.files[0]) return;
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const img = new Image();
+        img.onload = function() {
+          originalAspect = img.height / img.width;
+          updateHeightDisplay();
+        }
+        img.src = event.target.result;
+      }
+      reader.readAsDataURL(e.target.files[0]);
+    };
+
+    function updateHeightDisplay() {
+      const w = document.getElementById('target-width').value;
+      const mode = document.getElementById('char-mode').value;
+      const h = Math.round(w * originalAspect * mode);
+      document.getElementById('auto-height').innerText = h;
+      return h;
+    }
+
+    document.getElementById('gen-btn').onclick = function generate() {
+      const fileInput = document.getElementById('upload');
+      if (!fileInput.files[0]) return alert(t('i2e_select_file'));
+
+      const w = parseInt(document.getElementById('target-width').value);
+      const h = updateHeightDisplay();
+      const gradient = document.getElementById('gradient-str').value;
+      const contrast = parseInt(document.getElementById('contrast').value);
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          canvas.width = w; canvas.height = h;
+          ctx.fillStyle = "white"; ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const pixels = ctx.getImageData(0, 0, w, h).data;
+          const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
+
+          let lines = [];
+          for (let y = 0; y < h; y++) {
+            let line = "";
+            for (let x = 0; x < w; x++) {
+              const i = (y * w + x) * 4;
+              let r = factor * (pixels[i] - 128) + 128;
+              let g = factor * (pixels[i+1] - 128) + 128;
+              let b = factor * (pixels[i+2] - 128) + 128;
+              const brightness = Math.max(0, Math.min(255, (0.299*r + 0.587*g + 0.114*b)));
+              line += gradient[Math.floor((brightness / 256) * gradient.length)];
+            }
+            lines.push(line);
+          }
+          
+          fullArtString = lines.join('\n');
+          const preview = document.getElementById('art-preview');
+          preview.textContent = fullArtString;
+          document.getElementById('dl-btn').style.display = "inline-flex";
+          
+          const viewport = document.getElementById('preview-viewport');
+          const scale = Math.min((viewport.offsetWidth*0.9)/preview.offsetWidth, (viewport.offsetHeight*0.9)/preview.offsetHeight);
+          preview.style.transform = `scale(${scale})`;
+
+          createCopyParts(lines);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+
+    function createCopyParts(lines) {
+      const area = document.getElementById('copy-area');
+      area.innerHTML = `<h3 style='color:white'>${t('i2e_copy_title')}</h3>`;
+      
+      let currentChunk = "";
+      let partIndex = 1;
+
+      for (let line of lines) {
+        if ((currentChunk.length + line.length + 10) > DISCORD_LIMIT) {
+          addSection(area, currentChunk, partIndex++);
+          currentChunk = "";
+        }
+        currentChunk += line + "\n";
+      }
+      if (currentChunk) addSection(area, currentChunk, partIndex);
+    }
+
+    function addSection(container, text, index) {
+      const div = document.createElement('div');
+      div.className = 'copy-section';
+      const partText = "```text\n" + text + "```";
+      div.innerHTML = `
+        <button class="dynamic-button copy" onclick="copyText(this)">${t('i2e_copy_btn')} ${index}</button>
+        <textarea readonly>${partText}</textarea>
+      `;
+      container.appendChild(div);
+    }
+
+    window.copyText = function(btn) {
+      const txt = btn.nextElementSibling;
+      txt.select();
+      document.execCommand('copy');
+      const originalText = btn.innerText;
+      btn.innerText = t('i2e_copied');
+      setTimeout(() => btn.innerText = t('i2e_copy_again'), 1500);
+    }
+
+    document.getElementById('dl-btn').onclick = function downloadTxt() {
+      const blob = new Blob([fullArtString], { type: 'text/plain' });
+      const anchor = document.createElement('a');
+      anchor.download = "raster_art.txt";
+      anchor.href = window.URL.createObjectURL(blob);
+      anchor.click();
+    }
+  </script>
+</body>
+</html>
