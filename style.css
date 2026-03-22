@@ -5,11 +5,18 @@
 }
 
 :root {
-  --light-color: hsl(0, 0%, 98%);
+  --light-color: hsl(0, 0%, 100%);
   --font-family: "Poppins", sans-serif;
-  --dark-color: hsl(0, 0%, 9%);
+  --dark-color: hsl(0, 0%, 5%);
   --base: hsl(200, 95%, 50%);
-  --bg-gradient: linear-gradient(to bottom, hsl(200, 80%, 30%), hsl(200, 50%, 10%));
+  --bg-gradient: linear-gradient(to bottom, hsl(200, 80%, 20%), hsl(200, 50%, 5%));
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 .jersey-25-regular {
@@ -36,14 +43,18 @@ body {
   overflow-x: hidden;
 }
 
-.background-canvas {
+.orb-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;
+}
+
+.background-canvas {
+  display: none; /* Deprecated in favor of .orb-canvas */
 }
 
 strong {
@@ -320,17 +331,46 @@ cardparalax:hover {
 
 .navbar {
   width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 25px;
   position: fixed;
   top: 0;
   z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.lang-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s;
+}
+
+.lang-select:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lang-select option {
+  background: #111;
+  color: white;
 }
 
 .navbar a.navbar-text {

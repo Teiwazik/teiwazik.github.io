@@ -20,26 +20,32 @@
   <!-- Navbar -->
   <nav class="navbar fixed-top nav-blur" data-bs-theme="dark">
     <div class="container-fluid">
-      <a href="#" class="navbar-text text-light">Hub</a>
+      <a href="#" class="navbar-text text-light" data-i18n="nav_hub">Hub</a>
       <div class="navbar-links">
-        <a href="#github-section" class="nav-link-item">GitHub</a>
-        <a href="#projects-section" class="nav-link-item">Проекты</a>
-        <a href="#modrinth-section" class="nav-link-item">Modrinth</a>
+        <a href="#github-section" class="nav-link-item" data-i18n="nav_github">GitHub</a>
+        <a href="#projects-section" class="nav-link-item" data-i18n="nav_projects">Проекты</a>
+        <a href="#modrinth-section" class="nav-link-item" data-i18n="nav_modrinth">Modrinth</a>
       </div>
-      <a class="jersey-25-regular navbar-brand overlay__btn--colors text-gradient" href="#">Colors</a>
+      <div class="navbar-actions">
+        <select id="lang-switcher" class="lang-select">
+          <option value="en">EN</option>
+          <option value="ru">RU</option>
+        </select>
+        <a class="jersey-25-regular navbar-brand overlay__btn--colors text-gradient" href="#" data-i18n="nav_colors">Colors</a>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
   <div class="intro">
-    <h1>Welcome to Teiwazik's Hub</h1>
-    <p>Мои проекты, ссылки и GitHub статистика</p>
+    <h1 data-i18n="hero_title">Welcome to Teiwazik's Hub</h1>
+    <p data-i18n="hero_subtitle">Мои проекты, ссылки и статистика GitHub</p>
   </div>
 
   <!-- Links card -->
   <div class="content">
     <div class="card" id="test" data-tilt-scale="105%" data-tilt data-tilt-reverse="true" data-tilt-max="30" data-tilt-speed="4000" data-tilt-perspective="1000" data-tilt-glare data-tilt-max-glare="0.1">
-      <p><strong>Мои ссылки</strong></p>
+      <p><strong data-i18n="links_title">Мои ссылки</strong></p>
       <div>
         <p>Github - <a href="https://github.com/Teiwazik"><img src="github_logo_icon_229278.webp" class="sizing" alt="GitHub" id="icons"></a></p>
         <p>Modrinth - <a href="https://modrinth.com/user/teiwazik"><img src="modrinth.png" class="sizing" style="width: 40px; height: 40px;" alt="Modrinth" id="icons"></a></p>
@@ -53,12 +59,12 @@
   <section id="github-section" class="gh-section">
     <div class="section-header">
       <img src="github_logo_icon_229278.webp" alt="GitHub" class="section-header-icon">
-      <h2>GitHub Статистика</h2>
+      <h2 data-i18n="gh_stats_header">GitHub Статистика</h2>
     </div>
     <div id="github-stats" class="gh-stats-wrapper">
       <div class="gh-loading">
         <div class="gh-spinner"></div>
-        <span>Загрузка статистики...</span>
+        <span data-i18n="gh_stats_loading">Загрузка статистики...</span>
       </div>
     </div>
   </section>
@@ -67,7 +73,7 @@
   <section id="projects-section" class="gh-section">
     <div class="section-header">
       <span style="font-size:1.6rem">💻</span>
-      <h2>GitHub Проекты</h2>
+      <h2 data-i18n="gh_projects_header">GitHub Проекты</h2>
     </div>
 
     <!-- Category filter tabs -->
@@ -77,7 +83,7 @@
     <div id="github-projects-container" class="gh-projects-grid">
       <div class="gh-loading">
         <div class="gh-spinner"></div>
-        <span>Загрузка проектов...</span>
+        <span data-i18n="gh_projects_loading">Загрузка проектов...</span>
       </div>
     </div>
   </section>
@@ -86,10 +92,11 @@
   <section id="modrinth-section" class="gh-section projects">
     <div class="section-header">
       <img src="modrinth.png" alt="Modrinth" class="section-header-icon">
-      <h2>Modrinth Проекты</h2>
+      <h2 data-i18n="modrinth_header">Modrinth Проекты</h2>
     </div>
   </section>
 
+  <script src="i18n.js"></script>
   <script type="module" src="script.js"></script>
   <script type="text/javascript" src="vanilla-tilt.js"></script>
   <script src="background.js"></script>

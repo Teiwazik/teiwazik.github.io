@@ -1,11 +1,8 @@
-document.addEventListener("DOMContentLoaded", async () => {
+async function renderModrinthProjects() {
   const projectsContainer = document.querySelector(".projects");
+  if (!projectsContainer) return;
 
-  if (!projectsContainer.querySelector("h2")) {
-    const title = document.createElement("h2");
-    title.textContent = "Discover my Modrinth projects";
-    projectsContainer.appendChild(title);
-  }
+  const t = (key) => window.i18n ? window.i18n.t(key) : key;
 
   let projectsList = projectsContainer.querySelector(".projects-list");
   if (!projectsList) {
@@ -21,8 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const projectsResponse = await fetch(`https://api.modrinth.com/v2/user/${userData.id}/projects`);
     const projects = await projectsResponse.json();
 
+    projectsList.innerHTML = '';
+
     if (projects.length === 0) {
-      projectsList.innerHTML = "<p>No projects found.</p>";
+      projectsList.innerHTML = `<p>${t('modrinth_no_projects')}</p>`;
       return;
     }
 
@@ -42,26 +41,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (projectIcon.complete && projectIcon.naturalHeight !== 0) {
           const dominantColor = colorThief.getColor(projectIcon);
           const rgbColor = `rgb(${dominantColor[0]}, ${dominantColor[1]}, ${dominantColor[2]})`;
-
-          projectIcon.style.boxShadow = `0 0 15px 5px ${rgbColor}`;
+          projectIcon.style.boxShadow = `0 0 15px 4px ${rgbColor}`;
         }
       };
 
       const projectInfo = document.createElement("div");
       projectInfo.classList.add("project-info");
 
-      let buttonText = "Discover project";
-      if (project.project_type === "mod") {
-        buttonText = "Discover mod";
-      } else if (project.project_type === "resourcepack") {
-        buttonText = "Discover resourcepack";
-      } else if (project.project_type === "plugin") {
-        buttonText = "Discover plugin";
-      }
+      let buttonText = t('modrinth_view_project');
 
       projectInfo.innerHTML = `
         <h3>${project.title}</h3>
-        <p>${project.description || "No description available."}</p>
+        <p>${project.description || t('no_desc')}</p>
         <a href="${projectLink}" target="_blank" rel="noopener noreferrer" class="dynamic-button">${buttonText}</a>
       `;
 
@@ -70,33 +61,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const downloadsContainer = document.createElement("div");
       downloadsContainer.classList.add("stats-item");
-
-      const downloadsIcon = document.createElement("img");
-      downloadsIcon.src = "download.svg"; 
-      downloadsIcon.alt = "Downloads";
-      downloadsIcon.classList.add("stats-icon", "download-icon");
-
-      const downloadsCount = document.createElement("span");
-      downloadsCount.textContent = project.downloads || 0;
-      downloadsCount.classList.add("stats-count");
-
-      downloadsContainer.appendChild(downloadsIcon);
-      downloadsContainer.appendChild(downloadsCount);
+      downloadsContainer.innerHTML = `
+        <img src="download.svg" alt="Downloads" class="stats-icon download-icon">
+        <span class="stats-count">${project.downloads || 0}</span>
+      `;
 
       const likesContainer = document.createElement("div");
       likesContainer.classList.add("stats-item");
-
-      const likesIcon = document.createElement("img");
-      likesIcon.src = "heart-alt-svgrepo-com.svg"; 
-      likesIcon.alt = "Likes";
-      likesIcon.classList.add("stats-icon", "heart-icon");
-
-      const likesCount = document.createElement("span");
-      likesCount.textContent = project.followers || 0;
-      likesCount.classList.add("stats-count");
-
-      likesContainer.appendChild(likesIcon);
-      likesContainer.appendChild(likesCount);
+      likesContainer.innerHTML = `
+        <img src="heart-alt-svgrepo-com.svg" alt="Likes" class="stats-icon heart-icon">
+        <span class="stats-count">${project.followers || 0}</span>
+      `;
 
       projectStats.appendChild(downloadsContainer);
       projectStats.appendChild(likesContainer);
@@ -109,6 +84,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } catch (error) {
     console.error("Error fetching Modrinth projects:", error);
-    projectsContainer.innerHTML += "<p>Failed to load projects. Please try again later.</p>";
+    projectsList.innerHTML = `<p>${t('modrinth_failed')}</p>`;
   }
-});
+}
+
+document.addEventListener("DOMContentLoaded", renderModrinthProjects);
+window.addEventListener('langChanged', renderModrinthProjects);
