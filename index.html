@@ -3,52 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <title>Teiwazik`s Hub</title>
+  <meta name="description" content="Teiwazik's personal hub — GitHub projects, Modrinth mods, and links.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jersey+25&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="github.css">
 </head>
 <body>
 
+  <!-- Animated background canvas -->
+  <canvas class="orb-canvas"></canvas>
+
+  <!-- Navbar -->
   <nav class="navbar fixed-top nav-blur" data-bs-theme="dark">
     <div class="container-fluid">
       <a href="#" class="navbar-text text-light">Hub</a>
+      <div class="navbar-links">
+        <a href="#github-section" class="nav-link-item">GitHub</a>
+        <a href="#projects-section" class="nav-link-item">Проекты</a>
+        <a href="#modrinth-section" class="nav-link-item">Modrinth</a>
+      </div>
       <a class="jersey-25-regular navbar-brand overlay__btn--colors text-gradient" href="#">Colors</a>
     </div>
   </nav>
 
-
+  <!-- Hero -->
   <div class="intro">
     <h1>Welcome to Teiwazik's Hub</h1>
-    <p>This is my github main page, you can see there my projects and links</p>
+    <p>Мои проекты, ссылки и GitHub статистика</p>
   </div>
 
-
+  <!-- Links card -->
   <div class="content">
     <div class="card" id="test" data-tilt-scale="105%" data-tilt data-tilt-reverse="true" data-tilt-max="30" data-tilt-speed="4000" data-tilt-perspective="1000" data-tilt-glare data-tilt-max-glare="0.1">
-      <p><strong>My links</strong></p>
+      <p><strong>Мои ссылки</strong></p>
       <div>
-        <p>Github - <a href="https://github.com/Teiwazik"><img src="github_logo_icon_229278.webp" class="sizing" alt="Instagram" id="icons"></a></p>
-        <p>Modrinth - <a href="https://modrinth.com/user/teiwazik"><img src="modrinth.png" class="sizing" style="width: 40px; height: 40px;" alt="Instagram" id="icons"></a></p>
+        <p>Github - <a href="https://github.com/Teiwazik"><img src="github_logo_icon_229278.webp" class="sizing" alt="GitHub" id="icons"></a></p>
+        <p>Modrinth - <a href="https://modrinth.com/user/teiwazik"><img src="modrinth.png" class="sizing" style="width: 40px; height: 40px;" alt="Modrinth" id="icons"></a></p>
       </div>
     </div>
     <div class="" id="modrinth-profile-container" data-tilt-scale="105%" data-tilt data-tilt-reverse="true" data-tilt-max="30" data-tilt-speed="4000" data-tilt-perspective="1000" data-tilt-glare data-tilt-max-glare="0.1">
     </div>
   </div>
 
-  <div class="projects">
-    <h2>Discover my Modrinth projects</h2>
+  <!-- ─── GitHub Statistics Section ─── -->
+  <section id="github-section" class="gh-section">
+    <div class="section-header">
+      <img src="github_logo_icon_229278.webp" alt="GitHub" class="section-header-icon">
+      <h2>GitHub Статистика</h2>
+    </div>
+    <div id="github-stats" class="gh-stats-wrapper">
+      <div class="gh-loading">
+        <div class="gh-spinner"></div>
+        <span>Загрузка статистики...</span>
+      </div>
+    </div>
+  </section>
 
-  </div>
+  <!-- ─── GitHub Projects Section ─── -->
+  <section id="projects-section" class="gh-section">
+    <div class="section-header">
+      <span style="font-size:1.6rem">💻</span>
+      <h2>GitHub Проекты</h2>
+    </div>
+
+    <!-- Category filter tabs -->
+    <div id="github-filter-tabs" class="gh-filter-tabs"></div>
+
+    <!-- Projects grid -->
+    <div id="github-projects-container" class="gh-projects-grid">
+      <div class="gh-loading">
+        <div class="gh-spinner"></div>
+        <span>Загрузка проектов...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Modrinth Projects Section ─── -->
+  <section id="modrinth-section" class="gh-section projects">
+    <div class="section-header">
+      <img src="modrinth.png" alt="Modrinth" class="section-header-icon">
+      <h2>Modrinth Проекты</h2>
+    </div>
+  </section>
 
   <script type="module" src="script.js"></script>
   <script type="text/javascript" src="vanilla-tilt.js"></script>
   <script src="background.js"></script>
   <script src="modrinth-projects.js"></script>
-  <script src="color-thief.min.js"></script>
   <script src="modrinth-profile.js"></script>
+  <script src="github-projects.js"></script>
 </body>
 </html>
